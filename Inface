@@ -1,0 +1,123 @@
+package rosh;
+import java.util.Scanner;
+abstract class Animal 
+{
+    protected int legs;
+    protected Animal(int legs) 
+    {
+        this.legs = legs;
+    }
+    public void walk() 
+    {
+    	if(legs>0)
+           System.out.println("This animal walks on " + legs + " legs.");
+    	else
+    		System.out.println("This animal cannot walk");
+    }
+    public abstract void eat();
+}
+class Spider extends Animal 
+{
+    public Spider() 
+    {
+        super(8);
+    }
+    public void spider() 
+    {
+        System.out.println("This is a spider.");
+    }
+    public void eat() 
+    {
+        System.out.println("The spider eats insects.");
+    }
+}
+class Cat extends Animal implements Pet 
+{
+    private String name;
+    public Cat(String name) 
+    {
+        super(4);
+        this.name = name;
+    }
+    public void cat() 
+    {
+        System.out.println("This is a cat named " + name);
+    }
+    public String getName() 
+    {
+        return name;
+    }
+    public void setName(String name) 
+    {
+        this.name = name;
+    }
+
+    public void play() {
+        System.out.println(name + " plays with a toy.");
+    }
+    public void eat() 
+    {
+        System.out.println(name + " eats cat food.");
+    }
+}
+class Fish extends Animal implements Pet {
+    private String name;
+
+    public Fish() 
+    {
+        super(0);
+    }
+    public void fish() 
+    {
+        System.out.println("This is a fish named " + name);
+    }
+    public String getName() 
+    {
+        return name;
+    }
+
+    public void setName(String name) 
+    {
+        this.name = name;
+    }
+    public void play() 
+    {
+        System.out.println(name + " swims around.");
+    }
+    public void eat() 
+    {
+        System.out.println(name + " eats fish food.");
+    }
+}
+interface Pet 
+{
+    String getName();
+    void setName(String name);
+    void play();
+}
+public class Inface 
+{
+    public static void main(String[] args) 
+    {
+        Spider spider = new Spider();
+        Cat cat = new Cat("prince");
+        Fish fish = new Fish();
+        spider.spider();
+        spider.walk();
+        spider.eat();
+        System.out.println();
+        cat.cat();
+        cat.walk();
+        cat.play();
+        cat.eat();
+        System.out.println();
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter a name for the fish: ");
+        String fishName = scanner.nextLine();
+        fish.setName(fishName);
+        fish.fish();
+        fish.walk();
+        fish.play();
+        fish.eat();
+    }
+}
